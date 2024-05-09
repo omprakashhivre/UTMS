@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
 
-const API_BASEPATH = "http://localhost:8080/api/v1";
+const API_BASEPATH = "https://utms.onrender.com/api/v1";
 
 function UserTable({ _users }) {
     const [users, setusers] = useState([]);

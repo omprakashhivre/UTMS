@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Navigation from './Nav';
 
 // import { DataGrid } from '@mui/x-data-grid';
-const API_BASEPATH = "http://localhost:8080/api/v1"
+const API_BASEPATH = "https://utms.onrender.com/api/v1"
 
 const Home = () => {
     const [tasks, setTasks] = useState([]);

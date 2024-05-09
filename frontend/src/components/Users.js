@@ -4,11 +4,12 @@ import UserTable from './userstable';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Navigation from './Nav';
-
+import { useNavigate } from 'react-router-dom';
 // import { DataGrid } from '@mui/x-data-grid';
-const API_BASEPATH = "http://localhost:8080/api/v1"
+const API_BASEPATH = "https://utms.onrender.com/api/v1"
 
 const UsersComponent = () => {
+    const navigate = useNavigate()
     const [users, setusers] = useState([]);
     const [user, setuser] = useState({
         username: "",
@@ -27,24 +28,10 @@ const UsersComponent = () => {
     }
 
     useEffect(() => {
-        fetchusers();
+        if (!localStorage.getItem("authKey")) navigate("/")
+
     }, []);
 
-    const fetchusers = async () => {
-        try {
-            const response = await axios.get(`${API_BASEPATH}/getallusersforuser`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("authKey")}`
-                }
-            });
-            if (response.data.status == true) {
-                setusers(response.data.user.users);
-
-            }
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
-    };
 
     const handleCreateuser = async (e) => {
         e.preventDefault()

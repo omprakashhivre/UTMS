@@ -3,10 +3,12 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/esm/Spinner';
+import { useNavigate } from 'react-router-dom';
 // import ValidateToken from './TokenValidate';
-const API_BASEPATH = "http://localhost:8080/api/v1";
+const API_BASEPATH = "https://utms.onrender.com/api/v1";
 
 function TaskTable({_tasks}) {
+    const navigate = useNavigate()
     const [tasks, setTasks] = useState([]);
     const [editTask, setEditTask] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
@@ -18,6 +20,7 @@ function TaskTable({_tasks}) {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
+        if(!localStorage.getItem("authKey")) navigate("/")
         fetchTasks();
     }, [_tasks]);
 
